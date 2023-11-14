@@ -8,6 +8,7 @@ import com.imd.market_api.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,11 +23,11 @@ public class ProductService {
     }
 
     public Page<Product> findAll(Pageable pageable) {
-        return productRepository.findAll(pageable);
+        return productRepository.findAllByAtivoIsTrue(pageable);
     }
 
     public Product findById(Integer id) {
-        return productRepository.findById(id).isPresent() ? productRepository.findById(id).get() : null;
+        return productRepository.findByIdAndAtivoIsTrue(id).isPresent() ? productRepository.findByIdAndAtivoIsTrue(id).get() : null;
     }
 
     public Product create(ProductCreateDTO productCreateDTO) {

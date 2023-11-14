@@ -10,8 +10,9 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI usersMicroserviceOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Your API Title")
-                        .description("Your API Description")
+                .info(new Info().title("Mercado API")
+                        .description("API simula o controle de registro de informações de um mercado.")
                         .version("1.0"));
+
     }
 }

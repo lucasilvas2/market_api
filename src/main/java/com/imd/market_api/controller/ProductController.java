@@ -4,10 +4,12 @@ import com.imd.market_api.model.ProductCreateDTO;
 import com.imd.market_api.model.ProductDetailDTO;
 import com.imd.market_api.model.ProductUpdateDTO;
 import com.imd.market_api.service.ProductService;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductDetailDTO>> list(Pageable pageable){
+    public ResponseEntity<Page<ProductDetailDTO>> list(@PageableDefault(page = 0, size = 1) Pageable pageable){
         var list = productService.findAll(pageable).map(ProductDetailDTO::new);
         return ResponseEntity.ok(list);
     }
