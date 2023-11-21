@@ -22,8 +22,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Page<Product> findAll(Pageable pageable) {
-        return productRepository.findAllByAtivoIsTrue(pageable);
+    public List<Product> findAll() {
+        return productRepository.findAllByAtivoIsTrue();
     }
 
     public Product findById(Integer id) {

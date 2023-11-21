@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 11223344
-      POSTGRES_DB: dealer
+      POSTGRES_DB: market
     volumes:
       - local_pgdata:/var/lib/postgresql/data
   pgadmin:

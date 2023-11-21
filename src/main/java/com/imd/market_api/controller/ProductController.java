@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin(origins = {"http://localhost:3000","http://localhost:3001" })
 @RestController
 @RequestMapping(value ="/product")
@@ -28,8 +31,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductDetailDTO>> list(@PageableDefault(page = 0, size = 1) Pageable pageable){
-        var list = productService.findAll(pageable).map(ProductDetailDTO::new);
+    public ResponseEntity<List<ProductDetailDTO>> list(){
+        var list = productService.findAll().stream().map(ProductDetailDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok(list);
     }
 
